@@ -1,0 +1,17 @@
+{
+  "name" : "mehulkaklotar/wp-nonce",
+  "type" : "library",
+  "license": "GPL2",
+  "require": {
+    "php": ">=7.0.0"
+  },
+  "require-dev": {
+    "brain/monkey":    "~1.4",
+    "phpunit/phpunit": "~4.8"
+  },
+  "autoload": {
+    "psr-4": {
+      "mehulkaklotar\\wp-nonce\\": "src/mehulkaklotar/wpnonce"
+    }
+  }
+}
