@@ -12,7 +12,7 @@ namespace mehulkaklotar\wpnonce;
 
 /**
  * Class NonceAbstract
- * @package MehulKaklotarWPNonce
+ * @package mehulkaklotar\wpnonce
  */
 class NonceAbstract implements NonceInterface {
 

@@ -10,13 +10,9 @@
 namespace mehulkaklotar\wpnonce;
 
 /**
- * Nonce Interface
- *
- * @package MehulKaklotarWPNonce
- * @license GPL2+
+ * Interface NonceInterface
+ * @package mehulkaklotar\wpnonce
  */
-
-
 interface NonceInterface {
 
     /**
