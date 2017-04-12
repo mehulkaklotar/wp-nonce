@@ -18,7 +18,7 @@ class NonceCreate extends NonceAbstract {
 	 **/
 	function __construct( NonceConfig $config ) {
 		$this->setAction( $config->getAction() );
-		$this->setRequest_name( $config->getRequestName() );
+		$this->setRequestName( $config->getRequestName() );
 		$this->setLifetime( $config->getLifetime() );
 	}
 
