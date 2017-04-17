@@ -65,7 +65,7 @@ class NonceCreateTest extends \PHPUnit_Framework_TestCase {
 		$nonce = $create->create();
 
 		// Check if nonce is stored correctly.
-		self::assertSame( $nonce, $create->get_nonce() );
+		self::assertSame( $nonce, $create->getNonce() );
 	}
 
 

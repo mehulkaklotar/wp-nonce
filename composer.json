@@ -11,7 +11,7 @@
   },
   "autoload": {
     "psr-4": {
-      "mehulkaklotar\\wp-nonce\\": "src/mehulkaklotar/wpnonce"
+      "mehulkaklotar\\wpnonce\\": "src/mehulkaklotar/wpnonce"
     }
   }
 }
