@@ -9,7 +9,7 @@ namespace mehulkaklotar\wpnonce;
  * Class NonceCreateURL
  * @package mehulkaklotar\wpnonce
  */
-class NonceCreateURL extends WPNonceCreate {
+class NonceCreateURL extends NonceCreate {
 
 	/**
 	 * The URL

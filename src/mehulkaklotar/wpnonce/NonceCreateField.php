@@ -9,7 +9,7 @@ namespace mehulkaklotar\wpnonce;
  * Class NonceCreateField
  * @package mehulkaklotar\wpnonce
  */
-class NonceCreateField extends WPNonceCreate {
+class NonceCreateField extends NonceCreate {
 
 	/**
 	 * field
