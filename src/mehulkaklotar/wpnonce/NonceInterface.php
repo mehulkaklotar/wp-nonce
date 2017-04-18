@@ -15,6 +15,40 @@ namespace mehulkaklotar\wpnonce;
  */
 interface NonceInterface {
 
+	/**
+	 * Set the nonce
+	 *
+	 * @param string $nonce The nonce to verify.
+	 *
+	 * @return string $nonce     The nonce
+	 **/
+	public function setNonce( string $nonce );
+
+	/**
+	 * Get the nonce
+	 *
+	 * @return string $nonce The nonce
+	 **/
+	public function getNonce();
+
+	/**
+	 * Set a lifetime
+	 *
+	 * @param int $lifetime The lifetime.
+	 *
+	 * @return int $lifetime The lifetime
+	 **/
+	public function setLifetime( int $lifetime );
+
+	/**
+	 * Get the lifetime
+	 *
+	 * @param  boolean $actual_lifetime Whether to run the 'nonce_life' filter or not. Optional. Default is true.
+	 *
+	 * @return int     $lifetime     The lifetime
+	 **/
+	public function getLifetime( bool $actual_lifetime = true );
+
     /**
      * Set an action
      *
@@ -46,38 +80,4 @@ interface NonceInterface {
      * @return string $request The request name
      **/
     public function getRequestName();
-
-    /**
-     * Set a lifetime
-     *
-     * @param int $lifetime The lifetime.
-     *
-     * @return int $lifetime The lifetime
-     **/
-    public function setLifetime( int $lifetime );
-
-    /**
-     * Get the lifetime
-     *
-     * @param  boolean $actual_lifetime Whether to run the 'nonce_life' filter or not. Optional. Default is true.
-     *
-     * @return int     $lifetime     The lifetime
-     **/
-    public function getLifetime( bool $actual_lifetime = true );
-
-    /**
-     * Set the nonce
-     *
-     * @param string $nonce The nonce to verify.
-     *
-     * @return string $nonce     The nonce
-     **/
-    public function setNonce( string $nonce );
-
-    /**
-     * Get the nonce
-     *
-     * @return string $nonce The nonce
-     **/
-    public function getNonce();
 }
