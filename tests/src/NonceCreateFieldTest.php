@@ -76,7 +76,7 @@ class NonceCreateFieldTest extends \PHPUnit_Framework_TestCase {
 
 		$this->action   = 'action';
 		$this->request  = 'request';
-		$this->lifetime = 123;
+		$this->lifetime = 213;
 		$this->config = new NonceConfig( $this->action, $this->request, $this->lifetime );
 	}
 

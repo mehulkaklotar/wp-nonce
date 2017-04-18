@@ -53,10 +53,10 @@ class NonceConfigTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * Check if WPNonceConfig stores the data correctly.
+	 * Check if NonceConfig stores the data correctly.
 	 */
 	public function testCreateConfig() {
-		$this->lifetime = 123;
+		$this->lifetime = 213;
 
 		// The filter should be added once.
 		Filters::expectAdded( 'nonce_life' )
