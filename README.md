@@ -22,7 +22,7 @@ WordPress Nonce In An Object Oriented Way.
         }
     ],
     "require": {
-        "mehulkaklotar/wpnonce" : "1.0.*"
+        "mehulkaklotar/wp-nonce" : "1.0.*"
     }
 }
 ```
