@@ -29,12 +29,12 @@ WordPress Nonce In An Object Oriented Way.
 
 Here I have created a demo plugin to use this system. [WP Nonce Client](https://github.com/mehulkaklotar/wp-nonce-client)
 
-### The Configuration:
+### The Settings:
 
 WP Nonce need an action to find the current action which is secured by a nonce. The first parameter of the configuration defines this name. Usually forms or URLs passes the nonce. The second parameter is for request key. In this case, we would expect the nonce to be in `$_REQUEST['request_name']`.
 
 ```
-$configuration = new NonceConfig( 
+$setting = new NonceSetting( 
 	'action', 
 	'request_name' 
 );
@@ -44,14 +44,14 @@ $configuration = new NonceConfig(
 ### To Create a Nonce
 To create a simple Nonce, use `NonceCreate`:
 ```
-$nonce_create = new NonceCreate( $configuration );
+$nonce_create = new NonceCreate( $setting );
 $nonce = $nonce_create->create();
 ```
 
 To add a nonce to an URL, you can use
 
 ```
-$nonce_create = new NonceCreateURL( $configuration );
+$nonce_create = new NonceCreateURL( $setting );
 $url = $nonce_create->create_url( 'http://example.com/' );
 ```
 Return URL will be:
@@ -59,7 +59,7 @@ Return URL will be:
 
 To add a form field:
 ```
-$create = new NonceCreateField( $configuration );
+$create = new NonceCreateField( $setting );
 $field = $create->create_field();
 ```
 Return field will be:
@@ -74,6 +74,6 @@ Set `$echo` to `true`, it will echo the field, before `create_url()`.
 
 To verify a nonce, you can use `NonceVerify`:
 ```
-$nonce_verify = new NonceVerify( $configuration );
+$nonce_verify = new NonceVerify( $setting );
 $is_valid = $nonce_verify->verify( $nonce );
 ```

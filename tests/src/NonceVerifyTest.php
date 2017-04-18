@@ -4,11 +4,25 @@ use Brain\Monkey;
 use Brain\Monkey\Functions;
 use Brain\Monkey\WP\Filters;
 
-use mehulkaklotar\wpnonce\NonceConfig;
+use mehulkaklotar\wpnonce\NonceSetting;
 use mehulkaklotar\wpnonce\NonceCreate;
 use mehulkaklotar\wpnonce\NonceVerify;
 
 class NonceVerifyTest extends \PHPUnit_Framework_TestCase {
+
+	/**
+	 * The request name.
+	 *
+	 * @var string
+	 **/
+	public $request;
+
+	/**
+	 * The action.
+	 *
+	 * @var string
+	 **/
+	public $action;
 
 	/**
 	 * The lifetime.
@@ -18,27 +32,11 @@ class NonceVerifyTest extends \PHPUnit_Framework_TestCase {
 	public $lifetime;
 
 	/**
-	 * The action.
-	 *
-	 * @var string
-	 **/
-	public $action;
-
-
-	/**
-	 * The request name.
-	 *
-	 * @var string
-	 **/
-	public $request;
-
-
-	/**
 	 * The configuration.
 	 *
-	 * @var NonceConfig
+	 * @var NonceSetting
 	 **/
-	public $config;
+	public $setting;
 
 	/**
 	 * Set the test up.
@@ -71,17 +69,17 @@ class NonceVerifyTest extends \PHPUnit_Framework_TestCase {
 		$this->action   = 'action';
 		$this->request  = 'request';
 		$this->lifetime = 213;
-		$this->config = new NonceConfig( $this->action, $this->request, $this->lifetime );
+		$this->setting = new NonceSetting( $this->action, $this->request, $this->lifetime );
 	}
 
 	/**
 	 * Check validation
 	 */
 	public function testValidity() {
-		$create = new NonceCreate( $this->config );
+		$create = new NonceCreate( $this->setting );
 		$nonce = $create->create();
 
-		$verify = new NonceVerify( $this->config );
+		$verify = new NonceVerify( $this->setting );
 		$valid = $verify->verify( $nonce );
 
 		// Check if nonce is valid.
@@ -93,7 +91,7 @@ class NonceVerifyTest extends \PHPUnit_Framework_TestCase {
 
 		// Check auto-nonce assignment.
 		$_REQUEST[ $this->request ] = $nonce;
-		$verify = new NonceVerify( $this->config );
+		$verify = new NonceVerify( $this->setting );
 		$valid = $verify->verify();
 		self::assertTrue( $valid );
 	}
@@ -103,10 +101,10 @@ class NonceVerifyTest extends \PHPUnit_Framework_TestCase {
 	 **/
 	public function testAge() {
 		self::markTestSkipped( 'Skipped. wp_verify_nonce() needs a better mockup to test this functionality.' );
-		$create = new Noncecreate( $this->config );
+		$create = new Noncecreate( $this->setting );
 		$nonce = $create->create();
 
-		$verify = new NonceVerify( $this->config );
+		$verify = new NonceVerify( $this->setting );
 		$age = $verify->get_nonce_age( $nonce );
 
 		self::assertSame( 1, $age );

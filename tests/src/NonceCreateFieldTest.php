@@ -4,10 +4,24 @@ use Brain\Monkey;
 use Brain\Monkey\Functions;
 use Brain\Monkey\WP\Filters;
 
-use mehulkaklotar\wpnonce\NonceConfig;
+use mehulkaklotar\wpnonce\NonceSetting;
 use mehulkaklotar\wpnonce\NonceCreateField;
 
 class NonceCreateFieldTest extends \PHPUnit_Framework_TestCase {
+
+	/**
+	 * The action.
+	 *
+	 * @var string
+	 **/
+	public $action;
+
+	/**
+	 * The request name.
+	 *
+	 * @var string
+	 **/
+	public $request;
 
 	/**
 	 * The lifetime.
@@ -17,27 +31,11 @@ class NonceCreateFieldTest extends \PHPUnit_Framework_TestCase {
 	public $lifetime;
 
 	/**
-	 * The action.
-	 *
-	 * @var string
-	 **/
-	public $action;
-
-
-	/**
-	 * The request name.
-	 *
-	 * @var string
-	 **/
-	public $request;
-
-
-	/**
 	 * The configuration.
 	 *
-	 * @var NonceConfig
+	 * @var NonceSetting
 	 **/
-	public $config;
+	public $setting;
 
 	/**
 	 * Set the test up
@@ -77,14 +75,14 @@ class NonceCreateFieldTest extends \PHPUnit_Framework_TestCase {
 		$this->action   = 'action';
 		$this->request  = 'request';
 		$this->lifetime = 213;
-		$this->config = new NonceConfig( $this->action, $this->request, $this->lifetime );
+		$this->setting = new NonceSetting( $this->action, $this->request, $this->lifetime );
 	}
 
 	/**
 	 * Test Field creation
 	 */
 	public function testCreateField() {
-		$create = new NonceCreateField( $this->config );
+		$create = new NonceCreateField( $this->setting );
 		$field = $create->create_field();
 
 		self::assertSame( $field, $this->action . $this->request );

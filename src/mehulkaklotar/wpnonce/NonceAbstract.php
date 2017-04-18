@@ -42,6 +42,61 @@ class NonceAbstract implements NonceInterface {
 	private $lifetime = DAY_IN_SECONDS;
 
 	/**
+	 * Set the nonce
+	 *
+	 * @param string $nonce The nonce to verify.
+	 *
+	 * @return string $nonce    The nonce
+	 **/
+	public function setNonce( string $nonce ) {
+		$this->nonce = $nonce;
+
+		return $this->getNonce();
+	}
+
+	/**
+	 * Get the nonce
+	 *
+	 * @return string $nonce The nonce
+	 **/
+	public function getNonce() {
+		return $this->nonce;
+	}
+
+	/**
+	 * Set the lifetime
+	 *
+	 * @param int $lifetime The new lifetime.
+	 *
+	 * @return int $lifetime    The current lifetime.
+	 **/
+	public function setLifetime( int $lifetime ) {
+		$this->lifetime = $lifetime;
+
+		return $this->getLifetime();
+	}
+
+	/**
+	 * Get the lifetime
+	 *
+	 * @param boolean $actual_lifetime Use the lifetime used by WordPress or the lifetime stored in $lifetime. Optional. Default: true.
+	 *
+	 * @return int $lifetime       The lifetime.
+	 **/
+	public function getLifetime( bool $actual_lifetime = true ) {
+		if ( $actual_lifetime ) {
+			/**
+			 * We run $lifetime through the 'nonce_life' to get the actual lifetime, which
+			 * the system is using right now, since other systems might interfere with
+			 * this filter.
+			 */
+			return apply_filters( 'nonce_life', $this->lifetime );
+		}
+
+		return $this->lifetime;
+	}
+
+	/**
 	 * Set the action
 	 *
 	 * @param string $action The action name.
@@ -83,61 +138,6 @@ class NonceAbstract implements NonceInterface {
 	 **/
 	public function getRequestName() {
 		return $this->request_name;
-	}
-
-	/**
-	 * Set the lifetime
-	 *
-	 * @param int $lifetime The new lifetime.
-	 *
-	 * @return int $lifetime    The current lifetime.
-	 **/
-	public function setLifetime( int $lifetime ) {
-		$this->lifetime = $lifetime;
-
-		return $this->getLifetime();
-	}
-
-	/**
-	 * Get the lifetime
-	 *
-	 * @param boolean $actual_lifetime Whether to use the lifetime used by WordPress or the lifetime stored in $lifetime. Optional. Default: true.
-	 *
-	 * @return int $lifetime       The lifetime.
-	 **/
-	public function getLifetime( bool $actual_lifetime = true ) {
-		if ( $actual_lifetime ) {
-			/**
-			 * We run $lifetime through the 'nonce_life' to get the actual lifetime, which
-			 * the system is using right now, since other systems might interfere with
-			 * this filter.
-			 */
-			return apply_filters( 'nonce_life', $this->lifetime );
-		}
-
-		return $this->lifetime;
-	}
-
-	/**
-	 * Set the nonce
-	 *
-	 * @param string $nonce The nonce to verify.
-	 *
-	 * @return string $nonce    The nonce
-	 **/
-	public function setNonce( string $nonce ) {
-		$this->nonce = $nonce;
-
-		return $this->getNonce();
-	}
-
-	/**
-	 * Get the nonce
-	 *
-	 * @return string $nonce The nonce
-	 **/
-	public function getNonce() {
-		return $this->nonce;
 	}
 
 }

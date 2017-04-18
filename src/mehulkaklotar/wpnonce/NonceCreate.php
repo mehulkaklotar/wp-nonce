@@ -14,16 +14,16 @@ class NonceCreate extends NonceAbstract {
 	/**
 	 * Configures the settings
 	 *
-	 * @param NonceConfig $config The configuration.
+	 * @param NonceSetting $setting The configuration.
 	 **/
-	function __construct( NonceConfig $config ) {
-		$this->setAction( $config->getAction() );
-		$this->setRequestName( $config->getRequestName() );
-		$this->setLifetime( $config->getLifetime() );
+	function __construct( NonceSetting $setting ) {
+		$this->setAction( $setting->getAction() );
+		$this->setRequestName( $setting->getRequestName() );
+		$this->setLifetime( $setting->getLifetime() );
 	}
 
 	/**
-	 * Verify nonce
+	 * create nonce
 	 *
 	 * @return string $nonce Created nonce
 	 **/

@@ -7,26 +7,28 @@ namespace mehulkaklotar\wpnonce;
 
 
 /**
- * Class NonceConfig
+ * Class NonceSetting
  * @package mehulkaklotar\wpnonce
  */
-class NonceConfig extends NonceAbstract {
+class NonceSetting extends NonceAbstract {
 
 	/**
-	 * Configuration
+	 * NonceSetting constructor.
 	 *
-	 * @param string $action The action.
-	 * @param string $request_name The new request name.
-	 * @param int $lifetime The new lifetime.
-	 **/
+	 * @param $action Action
+	 * @param $request_name The new request name
+	 * @param $lifetime Lifetime of the nonce
+	 */
 	function __construct( string $action, string $request_name, int $lifetime = null ) {
+
 		$this->setAction( $action );
 		$this->setRequestName( $request_name );
-		if ( null != $lifetime ) {
+
+		if ( ! empty( $lifetime ) ) {
 			$this->setLifetime( $lifetime );
-			// hook into the nonce_life filter
 			add_filter( 'nonce_life', array( $this, 'nonce_life' ) );
 		}
+
 	}
 
 	/**

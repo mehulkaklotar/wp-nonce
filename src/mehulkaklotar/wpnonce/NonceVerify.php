@@ -14,12 +14,12 @@ class NonceVerify extends NonceAbstract {
 	/**
 	 * Configure the class.
 	 *
-	 * @param NonceConfig $config The configuration instance.
+	 * @param NonceSetting $setting The configuration instance.
 	 **/
-	public function __construct( NonceConfig $config ) {
-		$this->setAction( $config->getAction() );
-		$this->setRequestName( $config->getRequestName() );
-		$this->setLifetime( $config->getLifetime() );
+	public function __construct( NonceSetting $setting ) {
+		$this->setAction( $setting->getAction() );
+		$this->setRequestName( $setting->getRequestName() );
+		$this->setLifetime( $setting->getLifetime() );
 		// If the $_REQUEST is set, we set the nonce here.
 		if ( isset( $_REQUEST[ $this->getRequestName() ] ) ) {
 			$nonce = sanitize_text_field( wp_unslash( $_REQUEST[ $this->getRequestName() ] ) );

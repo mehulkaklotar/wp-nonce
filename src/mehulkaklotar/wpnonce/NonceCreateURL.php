@@ -21,10 +21,10 @@ class NonceCreateURL extends NonceCreate {
 	/**
 	 * Configure the class.
 	 *
-	 * @param NonceConfig $config The configuration instance.
+	 * @param NonceSetting $setting The configuration instance.
 	 **/
-	function __construct( NonceConfig $config ) {
-		parent::__construct( $config );
+	function __construct( NonceSetting $setting ) {
+		parent::__construct( $setting );
 	}
 
 	/**

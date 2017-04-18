@@ -3,9 +3,23 @@ use Brain\Monkey;
 use Brain\Monkey\Functions;
 use Brain\Monkey\WP\Filters;
 
-use mehulkaklotar\wpnonce\NonceConfig;
+use mehulkaklotar\wpnonce\NonceSetting;
 
-class NonceConfigTest extends \PHPUnit_Framework_TestCase {
+class NonceSettingTest extends \PHPUnit_Framework_TestCase {
+
+	/**
+	 * The action.
+	 *
+	 * @var string
+	 **/
+	public $action;
+
+	/**
+	 * The request name.
+	 *
+	 * @var string
+	 **/
+	public $request;
 
 	/**
 	 * The lifetime.
@@ -15,27 +29,11 @@ class NonceConfigTest extends \PHPUnit_Framework_TestCase {
 	public $lifetime;
 
 	/**
-	 * The action.
-	 *
-	 * @var string
-	 **/
-	public $action;
-
-
-	/**
-	 * The request name.
-	 *
-	 * @var string
-	 **/
-	public $request;
-
-
-	/**
 	 * The configuration.
 	 *
-	 * @var NonceConfig
+	 * @var NonceSetting
 	 **/
-	public $config;
+	public $setting;
 
 	/**
 	 * Set the test up.
@@ -62,14 +60,14 @@ class NonceConfigTest extends \PHPUnit_Framework_TestCase {
 		Filters::expectAdded( 'nonce_life' )
 			->once();
 
-		$this->config = new NonceConfig( $this->action, $this->request, $this->lifetime );
+		$this->setting = new NonceSetting( $this->action, $this->request, $this->lifetime );
 
-		self::assertSame( $this->config->getAction(),       $this->action );
-		self::assertSame( $this->config->getRequestName(), $this->request );
-		self::assertSame( $this->config->getLifetime(),     $this->lifetime );
+		self::assertSame( $this->setting->getAction(),       $this->action );
+		self::assertSame( $this->setting->getRequestName(), $this->request );
+		self::assertSame( $this->setting->getLifetime(),     $this->lifetime );
 
 		// Check if nonce_life returns the right value.
-		self::assertSame( $this->config->nonce_life( DAY_IN_SECONDS ), $this->lifetime );
+		self::assertSame( $this->setting->nonce_life( DAY_IN_SECONDS ), $this->lifetime );
 	}
 
 	/**
@@ -81,7 +79,7 @@ class NonceConfigTest extends \PHPUnit_Framework_TestCase {
 		// The filter should be added once.
 		Filters::expectAdded( 'nonce_life' )
 			->never();
-		$this->config = new NonceConfig( $this->action, $this->request, $this->lifetime );
+		$this->setting = new NonceSetting( $this->action, $this->request, $this->lifetime );
 	}
 
 
