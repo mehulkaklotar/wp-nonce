@@ -27,6 +27,8 @@ WordPress Nonce In An Object Oriented Way.
 }
 ```
 
+Here I have created a demo plugin to use this system. [WP Nonce Client](https://github.com/mehulkaklotar/wp-nonce-client)
+
 ### The Configuration:
 
 WP Nonce need an action to find the current action which is secured by a nonce. The first parameter of the configuration defines this name. Usually forms or URLs passes the nonce. The second parameter is for request key. In this case, we would expect the nonce to be in `$_REQUEST['request_name']`.
